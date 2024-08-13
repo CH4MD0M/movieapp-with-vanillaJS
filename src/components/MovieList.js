@@ -1,6 +1,28 @@
+import MovieService from "../service/MovieService.js";
+
 export default class MovieList {
   constructor(container) {
     this.container = container;
+  }
+
+  async loadMovies(page) {
+    try {
+      const movies = await MovieService.loadMovies(page);
+      this.render(movies);
+    } catch (error) {
+      console.error("Error in loadMovies:", error);
+      this.renderError();
+    }
+  }
+
+  async searchMovies(query) {
+    try {
+      const movies = await MovieService.searchMovies(query);
+      this.render(movies);
+    } catch (error) {
+      console.error("Error in searchMovies:", error);
+      this.renderError();
+    }
   }
 
   render(movies) {
@@ -14,9 +36,8 @@ export default class MovieList {
                 <h2>${title}</h2>
                 <p>Release Date: ${release_date}</p>
                 <p>Rating: ${Math.round(vote_average)}</p>
-                <p>Rating: ${vote_average}</p>
             </div>
-        `;
+            `;
       })
       .join("");
 

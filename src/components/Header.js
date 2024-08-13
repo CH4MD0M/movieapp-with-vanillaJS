@@ -1,6 +1,10 @@
+import MovieService from "../service/MovieService.js";
+
 export default class Header {
   constructor(container) {
     this.container = container;
+    this.onNavClick = null;
+    this.onSearch = null;
   }
 
   render() {
@@ -15,6 +19,32 @@ export default class Header {
         <input type="text" id="search-input" placeholder="영화 검색...">
         <button id="search-button">검색</button>
       </div>
-    `;
+      `;
+
+    this.container.querySelectorAll("button[data-page]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (this.onNavClick) {
+          this.onNavClick(button.dataset.page);
+        }
+      });
+    });
+
+    const searchButton = this.container.querySelector("#search-button");
+    const searchInput = this.container.querySelector("#search-input");
+
+    searchButton.addEventListener("click", () => this.handleSearch());
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        this.handleSearch();
+      }
+    });
+  }
+
+  async handleSearch() {
+    const searchInput = this.container.querySelector("#search-input");
+    const query = searchInput.value;
+    if (query.trim() && this.onSearch) {
+      this.onSearch(query);
+    }
   }
 }
