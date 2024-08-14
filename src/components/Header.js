@@ -1,5 +1,3 @@
-import MovieService from "../service/MovieService.js";
-
 export default class Header {
   constructor(container) {
     this.container = container;
@@ -19,7 +17,7 @@ export default class Header {
         <input type="text" id="search-input" placeholder="영화 검색...">
         <button id="search-button">검색</button>
       </div>
-      `;
+    `;
 
     this.container.querySelectorAll("button[data-page]").forEach((button) => {
       button.addEventListener("click", () => {

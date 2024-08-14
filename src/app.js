@@ -1,6 +1,7 @@
 import Header from "./components/Header.js";
 import MovieList from "./components/MovieList.js";
 import Footer from "./components/Footer.js";
+import "./styles/global.css";
 
 class App {
   constructor() {
@@ -14,10 +15,11 @@ class App {
   initializeApp() {
     this.header.render();
     this.footer.render();
-    this.movieList.loadMovies("nowPlaying");
+    this.movieList.initializeMovieList("nowPlaying");
 
-    this.header.onNavClick = (page) => this.movieList.loadMovies(page);
-    this.header.onSearch = (query) => this.movieList.searchMovies(query);
+    this.header.onNavClick = (page) => this.movieList.initializeMovieList(page);
+    this.header.onSearch = (query) =>
+      this.movieList.initializeMovieSearch(query);
   }
 }
 
