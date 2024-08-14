@@ -5,9 +5,9 @@ export default class Footer {
 
   render() {
     this.container.innerHTML = `
-            <footer>
-                <p>&copy; 2024 TMDB Movie App.</p>
-            </footer>
-        `;
+      <footer>
+          <p>&copy; 2024 TMDB Movie App.</p>
+      </footer>
+    `;
   }
 }

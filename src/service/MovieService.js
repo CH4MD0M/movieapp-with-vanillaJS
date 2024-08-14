@@ -9,6 +9,7 @@ import {
 class MovieService {
   async loadMovies(page, pageNumber = 1) {
     let apiCall;
+
     switch (page) {
       case "nowPlaying":
         apiCall = getNowPlayingMovies(pageNumber);
@@ -37,9 +38,7 @@ class MovieService {
   }
 
   async searchMovies(query, pageNumber = 1) {
-    if (!query.trim()) {
-      return { results: [], totalPages: 0 };
-    }
+    if (!query.trim()) return { results: [], totalPages: 0 };
 
     try {
       const response = await searchMovies(query, pageNumber);
