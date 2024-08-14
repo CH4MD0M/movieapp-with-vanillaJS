@@ -116,3 +116,58 @@
   display: block;
   font-size: 15px;
 }
+
+@media (max-width: 1400px) {
+  .modal-content {
+    width: 90%;
+  }
+
+  .modal-info-container {
+    margin: 0 5rem;
+  }
+
+  .movie-title {
+    font-size: 5rem;
+  }
+
+  .movie-meta {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .modal-content {
+    width: 90%;
+  }
+
+  .modal-info-container {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30vh;
+    margin: 0 2rem;
+  }
+
+  .modal-poster {
+    width: 200px;
+  }
+
+  .movie-title {
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  .movie-meta {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .actions {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 100%;
+  }
+}

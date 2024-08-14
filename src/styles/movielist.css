@@ -43,19 +43,25 @@
   color: #9e9d9d;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
+  #main-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
   #main-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   #main-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   #main-container {
     grid-template-columns: 1fr;
   }
