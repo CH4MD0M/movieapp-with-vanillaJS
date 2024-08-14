@@ -1,4 +1,5 @@
 import MovieService from "../service/MovieService.js";
+import MovieDetail from "./MovieDetail.js";
 import "../styles/movielist.css";
 
 export default class MovieList {
@@ -10,6 +11,7 @@ export default class MovieList {
     this.isLoading = false;
     this.movies = [];
 
+    this.movieDetail = new MovieDetail();
     this.setupInfiniteScroll();
   }
 
@@ -17,6 +19,7 @@ export default class MovieList {
     this.$target = document.createElement("div");
     this.$target.className = "target";
     this.container.appendChild(this.$target);
+
     const observerOptions = {
       root: null,
       rootMargin: "0px",
@@ -58,6 +61,7 @@ export default class MovieList {
     if (this.isLoading || this.currentPage > this.totalPages) return;
 
     this.isLoading = true;
+
     try {
       const { results: newMovies, totalPages } = await this.loadFunction();
       this.totalPages = totalPages;
@@ -81,18 +85,26 @@ export default class MovieList {
       .map((movie) => {
         const { id, title, release_date, vote_average, poster_path } = movie;
         return `
-          <div class="movie">
-            <img src="https://image.tmdb.org/t/p/w300/${poster_path}"/>
-            <h2>${title}</h2>
-            <p>개봉일: ${release_date}</p>
-            <p>별점: ${Math.round(vote_average)}</p>
-          </div>
-        `;
+        <div class="movie" data-id="${id}">
+          <img src="https://image.tmdb.org/t/p/original/${poster_path}"/>
+          <h2>${title}</h2>
+          <p>개봉일: ${release_date}</p>
+          <p>별점: ${Math.round(vote_average)}</p>
+        </div>
+      `;
       })
       .join("");
 
     // 기존 영화 목록을 지우고 새로운 목록을 추가.
     this.container.innerHTML = movieHTML;
+
+    // 영화 카드 클릭 이벤트 리스너 추가
+    this.container.querySelectorAll(".movie").forEach((movieElement) => {
+      movieElement.addEventListener("click", () => {
+        const movieId = movieElement.dataset.id;
+        this.movieDetail.showMovieDetails(movieId);
+      });
+    });
 
     // target 요소를 다시 추가.
     this.container.appendChild(this.$target);
