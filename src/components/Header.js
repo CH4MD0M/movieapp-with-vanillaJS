@@ -1,3 +1,6 @@
+import "../styles/header.css";
+import logoWhite from "../assets/logo_white.png";
+
 export default class Header {
   constructor(container) {
     this.container = container;
@@ -7,6 +10,9 @@ export default class Header {
 
   render() {
     this.container.innerHTML = `
+      <div class="logo-container">
+        <img src=${logoWhite} alt="Film reel icon" class="logo">
+      </div>
       <nav>
         <button data-page="nowPlaying">현재 상영작</button>
         <button data-page="popular">인기 영화</button>
@@ -15,8 +21,8 @@ export default class Header {
       </nav>
       <div class="search-container">
         <input type="text" id="search-input" placeholder="영화 검색...">
-        <button id="search-button">검색</button>
-      </div>
+      <button id="search-button">검색</button>
+    </div>
     `;
 
     this.container.querySelectorAll("button[data-page]").forEach((button) => {
@@ -41,8 +47,7 @@ export default class Header {
   async handleSearch() {
     const searchInput = this.container.querySelector("#search-input");
     const query = searchInput.value;
-    if (query.trim() && this.onSearch) {
-      this.onSearch(query);
-    }
+
+    if (query.trim() && this.onSearch) this.onSearch(query);
   }
 }
