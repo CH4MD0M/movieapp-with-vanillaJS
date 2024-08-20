@@ -20,7 +20,7 @@ export default class Header {
         <button data-page="upcoming">개봉 예정작</button>
       </nav>
       <div class="search-container">
-        <input type="text" id="search-input" placeholder="영화 검색...">
+        <input type="text" id="search-input" placeholder="영화 검색">
       <button id="search-button">검색</button>
     </div>
     `;
@@ -38,9 +38,7 @@ export default class Header {
 
     searchButton.addEventListener("click", () => this.handleSearch());
     searchInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        this.handleSearch();
-      }
+      if (e.key === "Enter") this.handleSearch();
     });
   }
 
