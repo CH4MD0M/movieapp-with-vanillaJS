@@ -1,13 +1,13 @@
 .movie-modal {
   position: fixed;
-  z-index: 100;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  backdrop-filter: blur(5px);
   background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  overflow: hidden;
 }
 
 .modal-content {
@@ -17,32 +17,38 @@
   margin: 0 auto;
   color: white;
   background-color: rgb(18, 22, 29);
+  overflow: hidden;
 }
 
 .close {
   position: absolute;
-  top: 15px;
-  right: 35px;
+  top: 1.5rem;
+  right: 3.5rem;
   color: white;
-  font-size: 40px;
+  font-size: 4rem;
   font-weight: bold;
   cursor: pointer;
-  z-index: 100;
+  z-index: 102;
 }
 
 .banner-wrapper {
   position: absolute;
   width: 100%;
+  height: 70vh;
   top: 0;
   left: 0;
+  z-index: 100;
 }
 
 .banner {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 70vh;
 }
 
 .banner::after {
@@ -51,70 +57,185 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(180deg, rgba(18, 22, 29, 0.6), rgb(18, 22, 29));
   height: 100%;
+  background: linear-gradient(180deg, rgba(18, 22, 29, 0.6), rgb(18, 22, 29));
+}
+
+.scrollable-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 0 10rem;
+  padding-top: 40vh;
+  z-index: 101;
+}
+.scrollable-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background: #262835;
 }
 
 .modal-info-container {
   display: flex;
   position: relative;
-  padding-top: 40vh;
-  margin: 0 10rem;
-  gap: 30px;
+  gap: 3rem;
+  padding-bottom: 5rem;
 }
 
 .modal-poster {
-  width: 300px;
+  width: 30rem;
   border-radius: 10px;
 }
 
 .movie-title {
   font-size: 7rem;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .movie-meta {
   font-size: 3rem;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .movie-meta span:not(:last-child)::after {
   content: "•";
-  margin: 0 10px;
+  margin: 0 1rem;
 }
 
-.actions {
-  margin-bottom: 20px;
-}
-
-.actions button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  font-size: 1.5rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.play-btn {
-  background-color: white;
-  color: black;
-}
-
-.wishlist-btn {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.movie-overview {
-  font-size: 1.4rem;
-  line-height: 2;
-  margin-bottom: 20px;
+.movie-details {
+  margin-bottom: 2rem;
 }
 
 .movie-details span {
   display: block;
-  font-size: 15px;
+  font-size: 1.5rem;
+}
+
+.movie-overview {
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
+.credits-section,
+.video-section,
+.review-section {
+  margin: 10rem 0;
+}
+
+.credits-section > h3,
+.video-section > h3,
+.review-section > h3 {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.no-render {
+  font-size: 1.7rem;
+}
+
+/* 배우정보 */
+.cast-members {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.cast-member {
+  text-align: center;
+}
+
+.cast-member img {
+  width: 100%;
+  max-width: 15rem;
+  height: auto;
+}
+.no-image {
+  width: 15rem;
+  height: 225px;
+  background-color: #ddd;
+}
+
+.cast-member p {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+/* 예고편 */
+#youtube-player {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 90rem;
+  height: 50rem;
+}
+
+/* 리뷰 */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.review-item {
+  padding: 1.5rem;
+  background-color: #18213f;
+  border: 1px solid #919090;
+  border-radius: 8px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.author-avatar {
+  margin-right: 1rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+.no-avatar {
+  background-color: #fff;
+}
+
+.author-name {
+  margin-right: 1rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.author-rating {
+  color: #f39c12;
+}
+
+.review-content {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.read-more {
+  color: #3498db;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 1400px) {
@@ -122,8 +243,9 @@
     width: 90%;
   }
 
-  .modal-info-container {
-    margin: 0 5rem;
+  .scrollable-content {
+    padding: 0 5rem;
+    padding-top: 30vh;
   }
 
   .movie-title {
@@ -140,15 +262,24 @@
     width: 90%;
   }
 
+  .scrollable-content {
+    padding: 0 2rem;
+    padding-top: 10vh;
+  }
+  .credits-section,
+  .video-section,
+  .review-section {
+    margin: 8rem 0;
+  }
+
   .modal-info-container {
     flex-direction: column;
     align-items: center;
-    padding-top: 30vh;
-    margin: 0 2rem;
+    padding-bottom: 0;
   }
 
   .modal-poster {
-    width: 200px;
+    width: 20rem;
   }
 
   .movie-title {
@@ -161,8 +292,16 @@
     text-align: center;
   }
 
-  .actions {
-    text-align: center;
+  .author-name {
+    font-size: 1.5rem;
+  }
+
+  .review-content {
+    font-size: 1.4rem;
+  }
+
+  #youtube-player {
+    height: 30rem;
   }
 }
 

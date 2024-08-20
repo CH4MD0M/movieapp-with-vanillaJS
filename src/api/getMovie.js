@@ -1,26 +1,42 @@
 import { tmdbApi } from "./instance";
 
-export function getPopularMovies(page = 1) {
+function getPopularMovies(page = 1) {
   return tmdbApi.get("/movie/popular", { params: { page } });
 }
 
-export function getNowPlayingMovies(page = 1) {
+function getNowPlayingMovies(page = 1) {
   return tmdbApi.get("/movie/now_playing", { params: { page } });
 }
 
-export function getTopRatedMovies(page = 1) {
+function getTopRatedMovies(page = 1) {
   return tmdbApi.get("/movie/top_rated", { params: { page } });
 }
 
-export function getUpcomingMovies(page = 1) {
+function getUpcomingMovies(page = 1) {
   return tmdbApi.get("/movie/upcoming", { params: { page } });
 }
 
-export function getMovieDetails(movieId) {
+function getMovieDetails(movieId) {
   return tmdbApi.get(`/movie/${movieId}`);
 }
 
-export function searchMovies(query, page = 1) {
+function getMovieVideo(movieId) {
+  return tmdbApi.get(`/movie/${movieId}/videos`);
+}
+
+function getCredits(movieId) {
+  return tmdbApi.get(`/movie/${movieId}/credits`);
+}
+
+function getMovieReviews(movieId) {
+  return tmdbApi.get(`/movie/${movieId}/reviews`, {
+    params: {
+      language: "en-US",
+    },
+  });
+}
+
+function searchMovies(query, page = 1) {
   return tmdbApi.get(`/search/movie`, {
     params: {
       query: query,
@@ -28,3 +44,15 @@ export function searchMovies(query, page = 1) {
     },
   });
 }
+
+export {
+  getNowPlayingMovies,
+  getPopularMovies,
+  getTopRatedMovies,
+  getUpcomingMovies,
+  getMovieDetails,
+  getMovieVideo,
+  getCredits,
+  getMovieReviews,
+  searchMovies,
+};
